@@ -1,0 +1,38 @@
+import { ScrollView } from "std-widgets.slint";
+
+component UserInput inherits Rectangle {
+    width: 400px;
+    height: 200px;
+    background: white;
+    border-width: 10px;
+    border-color: gray;
+
+    ScrollView {
+        x: parent.border-width + 3px;
+        y: self.x;
+        width: parent.width - (2 * self.x);
+        height: parent.height - (2 * self.y);
+        viewport-width: self.width;
+        viewport-height: 10*self.height;
+        TextInput {
+            x: parent.x;
+            y: self.x;
+            width: parent.viewport-width;
+            height: parent.viewport-height;
+            color: black;
+            horizontal-alignment: TextHorizontalAlignment.left;
+            selection-background-color: red;
+            selection-foreground-color: green;
+            single-line: false;
+            wrap: TextWrap.word-wrap;
+            text: "Input here please";
+        }
+    }
+}
+
+export component MainWindow inherits Window {
+    width: 600px;
+    height: 400px;
+
+    UserInput {}
+}
